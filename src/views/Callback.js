@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import queryString from "query-string";
 
-import { connect } from "react-redux";
-import { setToken } from "../redux/actions";
 const Callback = (props) => {
   let { access_token } = queryString.parse(window.location.hash);
 
@@ -21,8 +19,4 @@ const Callback = (props) => {
   return <div>loading...</div>;
 };
 
-const mapDispatchToProps = {
-  setToken,
-};
-
-export default connect(null, mapDispatchToProps)(Callback);
+export default Callback;

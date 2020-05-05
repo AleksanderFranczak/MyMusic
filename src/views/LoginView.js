@@ -4,12 +4,14 @@ import queryString from "query-string";
 import loginImage from "../asstes/images/login-image.jpg";
 import { connect } from "react-redux";
 import Header from "../components/atoms/Header/Header";
+import backgroundImage from "../asstes/images/pic2.jpg";
+
 const StyledBackground = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: ${({ theme }) => theme.primary};
-  padding: 40px 80px;
-  position: relative;
+  background-image: url(${backgroundImage});
+  background-position: center;
+  background-size: 100%;
 `;
 
 const StyledWrapper = styled.div`
@@ -20,6 +22,12 @@ const StyledWrapper = styled.div`
   background-color: ${({ theme }) => theme.white};
   width: 60%;
   height: 70%;
+  opacity: 0.9;
+
+  @media (max-width: 500px) {
+    width: 90%;
+    height: 60%;
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -28,6 +36,10 @@ const TextWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  opacity: 1;
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 const StyledImage = styled.div`
@@ -40,6 +52,10 @@ const StyledImage = styled.div`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 const StyledLine = styled.div`
@@ -55,12 +71,18 @@ const StyledParagraph = styled.p`
   width: 70%;
   margin: 40px 0 0 0;
   text-align: center;
+  @media (max-width: 500px) {
+    font-size: 15px;
+  }
 `;
 const StyledHeader = styled(Header)`
   font-size: 90px;
   line-height: 1;
   font-weight: 300;
   letter-spacing: 2px;
+  @media (max-width: 500px) {
+    font-size: 60px;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -68,16 +90,16 @@ const StyledButton = styled.button`
   margin: 40px 0 0 0;
   padding: 10px 25px;
   font-size: 20px;
-  box-shadow: 5px 5px 0 ${({ theme }) => theme.secondary};
+  box-shadow: 5px 5px 0 ${({ theme }) => theme.primary};
   font-weight: 600;
   letter-spacing: 2px;
-  color: ${({ theme }) => theme.secondary};
+  color: ${({ theme }) => theme.primary};
   cursor: pointer;
   &:hover {
     color: ${({ theme }) => theme.white};
     transition: all 0.5s;
     box-shadow: 5px 5px 0 ${({ theme }) => theme.white};
-    background-color: ${({ theme }) => theme.secondary};
+    background-color: ${({ theme }) => theme.primary};
   }
 `;
 
@@ -85,14 +107,15 @@ class LoginView extends Component {
   handleLogin = () => {
     // redirect user to spotify to authenticate them
     const params = queryString.stringify({
-      client_id: "51db6b55ce174150928313d0b2d56190",
+      client_id: process.env.REACT_APP_CLIENT_ID,
       response_type: "token",
-      redirect_uri: "http://localhost:3000/callback",
-      scope: "user-top-read",
+      redirect_uri: `${window.location.origin}/callback`,
+      scope: "user-top-read playlist-modify-public playlist-modify-private",
     });
     window.location = `https://accounts.spotify.com/authorize?${params}`;
   };
   render() {
+    console.log(process.env.REACT_APP_CLIENT_ID);
     return (
       <StyledBackground>
         <StyledWrapper>
@@ -101,7 +124,7 @@ class LoginView extends Component {
             <StyledHeader color="primary">Music</StyledHeader>
             <StyledLine />
             <StyledParagraph>
-              Click the button to explore the power of music!
+              Click the button to login and discover new tracks!
             </StyledParagraph>
 
             <StyledButton onClick={this.handleLogin}>Login</StyledButton>

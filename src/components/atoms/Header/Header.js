@@ -4,6 +4,7 @@ const Header = styled.h1`
   color: ${({ theme, color }) => (color ? theme[color] : theme.white)};
   font-size: ${({ size }) => (size ? size : "2rem")};
   font-weight: ${({ weight }) => (weight ? weight : "500")};
+  margin: 0;
 `;
 
 export default Header;

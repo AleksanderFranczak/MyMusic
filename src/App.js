@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Route } from "react-router-dom";
+
 import LoginView from "./views/LoginView";
 import AppView from "./views/AppView";
 import GlobalStyle from "./styles/GlobalStyle";
@@ -17,15 +18,20 @@ axios.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (error.response.status === 401) {
-      const params = queryString.stringify({
-        client_id: "51db6b55ce174150928313d0b2d56190",
-        response_type: "token",
-        redirect_uri: "http://localhost:3000/callback",
-        scope: "user-top-read",
-      });
-      window.location = `https://accounts.spotify.com/authorize?${params}`;
+    console.log(error);
+    console.log(error.response);
+    if (error.response) {
+      if (error.response.status === 401) {
+        const params = queryString.stringify({
+          client_id: "51db6b55ce174150928313d0b2d56190",
+          response_type: "token",
+          redirect_uri: "http://localhost:3000/callback",
+          scope: "user-top-read",
+        });
+        window.location = `https://accounts.spotify.com/authorize?${params}`;
+      }
     }
+
     return Promise.reject(error);
   }
 );
@@ -48,6 +54,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={LoginView} />
             <Route exact path="/callback" component={CallBack} />
+
             <PrivateRoute path="/app">
               <AppView />
             </PrivateRoute>

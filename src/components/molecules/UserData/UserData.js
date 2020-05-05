@@ -4,12 +4,15 @@ import axios from "axios";
 import Header from "../../atoms/Header/Header";
 import NoImage from "../../../asstes/images/profile_pic.png";
 import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { setUserData } from "../../../redux/actions";
 const StyledWrapper = styled.div`
   display: flex;
   h1 {
     font-weight: 700;
     letter-spacing: 0.2rem;
     font-size: 2.5rem;
+    color: ${({ theme }) => theme.primary};
   }
   p {
     margin-top: 5px;
@@ -29,10 +32,14 @@ const StyledImage = styled.img`
   margin-right: 10px;
 `;
 
-const TextWrapper = styled.div``;
-const UserData = (props) => {
+const TextWrapper = styled.div`
+  p {
+    border-bottom: 1px solid ${({ theme }) => theme.grey};
+  }
+`;
+const UserData = ({ userData, setUserData }) => {
   let history = useHistory();
-  const [name, setName] = useState("user");
+
   const [image, setImage] = useState(NoImage);
   useEffect(() => {
     axios({
@@ -43,12 +50,13 @@ const UserData = (props) => {
       },
     })
       .then((res) => {
-        // console.log(res.data);
-
-        setName(res.data.display_name);
+        if (res.data.images.length > 1) {
+          setImage(res.data.images[0].url);
+        }
+        setUserData(res.data.display_name, res.data.id);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [setUserData]);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -59,11 +67,17 @@ const UserData = (props) => {
     <StyledWrapper>
       <StyledImage src={image} />
       <TextWrapper>
-        <Header color="secondary">{name}</Header>
+        <Header color="secondary">{userData.name}</Header>
         <p onClick={handleLogout}>Logout</p>
       </TextWrapper>
     </StyledWrapper>
   );
 };
+const mapStateToProps = (state) => ({
+  userData: state.userData,
+});
 
-export default UserData;
+const mapDispatchToProps = {
+  setUserData,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(UserData);
