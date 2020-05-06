@@ -77,8 +77,12 @@ const IconContainer = styled.div`
   @media (max-width: 630px) {
     position: fixed;
     bottom: 0;
-    width: 100vw;
+    left: 0;
+    width: 100vw !important;
     justify-content: center;
+    background-color: white;
+
+    z-index: 10000;
     span:first-child {
       display: none;
     }

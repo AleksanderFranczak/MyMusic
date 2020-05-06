@@ -5,7 +5,7 @@ import { setTimeRange } from "../../../redux/actions";
 import arrowDown from "../../../asstes/icons/arrowDown.svg";
 
 const StyledSelect = styled.select`
-  padding: 10px 30px;
+  padding: 5px 30px;
   padding-right: 35px;
   border: none;
   height: 70%;

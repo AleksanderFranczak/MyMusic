@@ -19,6 +19,9 @@ const StyledWrapper = styled.div`
   justify-content: center;
   margin-bottom: 4rem;
   position: relative;
+  @media (max-width: 500px) {
+    margin-bottom: 2rem;
+  }
 
   & > :first-child {
     position: absolute;
