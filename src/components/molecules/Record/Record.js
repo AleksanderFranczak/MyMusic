@@ -43,6 +43,11 @@ const StyledWrapper = styled.div`
     grid-template-columns: 0.5fr 7fr 0.5fr 0.5fr;
     padding: 10px 0;
     width: 90%;
+
+    &:hover {
+      background-color: transparent;
+      box-shadow: none;
+    }
   }
 `;
 

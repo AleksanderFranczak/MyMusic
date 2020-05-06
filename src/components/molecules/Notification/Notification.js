@@ -15,7 +15,7 @@ const StyledWrapper = styled.div`
   padding: 10px 30px;
   color: black;
   border-radius: 30px;
-  display: flex;
+  display: ${({ isDisplaying }) => (isDisplaying ? "flex" : "none")};
   align-items: center;
 
   svg {
