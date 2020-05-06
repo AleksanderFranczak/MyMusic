@@ -107,7 +107,7 @@ class LoginView extends Component {
   handleLogin = () => {
     // redirect user to spotify to authenticate them
     const params = queryString.stringify({
-      client_id: process.env.REACT_APP_CLIENT_ID,
+      client_id: "51db6b55ce174150928313d0b2d56190",
       response_type: "token",
       redirect_uri: `${window.location.origin}/callback`,
       scope: "user-top-read playlist-modify-public playlist-modify-private",

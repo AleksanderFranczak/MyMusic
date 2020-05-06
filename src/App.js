@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 
 import LoginView from "./views/LoginView";
 import AppView from "./views/AppView";
@@ -42,25 +42,27 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <Helmet>
-            <link
-              href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
-              rel="stylesheet"
-            />
-          </Helmet>
-          <GlobalStyle />
-          <Switch>
-            <Route exact path="/" component={LoginView} />
-            <Route exact path="/callback" component={CallBack} />
+      <Router>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <Helmet>
+              <link
+                href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap"
+                rel="stylesheet"
+              />
+            </Helmet>
+            <GlobalStyle />
+            <Switch>
+              <Route exact path="/" component={LoginView} />
+              <Route exact path="/callback" component={CallBack} />
 
-            <PrivateRoute path="/app">
-              <AppView />
-            </PrivateRoute>
-          </Switch>
-        </ThemeProvider>
-      </Provider>
+              <PrivateRoute path="/app">
+                <AppView />
+              </PrivateRoute>
+            </Switch>
+          </ThemeProvider>
+        </Provider>
+      </Router>
     );
   }
 }
