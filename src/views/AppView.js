@@ -42,10 +42,6 @@ const AppContent = styled.div`
   display: grid;
   grid-template-columns: auto;
   height: 85vh;
-
-  @media (max-width: 630px) {
-    height: 80vh;
-  }
 `;
 
 const App = ({ view }) => {

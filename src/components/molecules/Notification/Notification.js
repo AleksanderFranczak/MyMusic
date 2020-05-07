@@ -25,6 +25,10 @@ const StyledWrapper = styled.div`
 `;
 const Title = styled.p`
   font-size: 2rem;
+
+  @media (max-width: 500px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const StyledText = styled.p`

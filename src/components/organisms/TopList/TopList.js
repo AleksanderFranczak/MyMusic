@@ -34,7 +34,7 @@ const StyledWrapper = styled.div`
   grid-template-columns: 100%;
 
   @media (max-width: 630px) {
-    grid-template-rows: 3fr 0.1fr 24fr 3fr;
+    grid-template-rows: 3fr 0.1fr 24fr;
   }
 `;
 const StyledHeader = styled(Header)`
@@ -49,9 +49,6 @@ const StyledNavBar = styled.div`
   display: flex;
   justify-content: space-between;
   margin-right: 20px;
-  /* @media (max-width: 500px) {
-    display: none;
-  } */
 `;
 
 const IconContainer = styled.div`
@@ -80,9 +77,11 @@ const IconContainer = styled.div`
     left: 0;
     width: 100vw !important;
     justify-content: center;
-    background-color: white;
-
+    background-color: rgba(255, 255, 255, 0.9);
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 2px -2px 3px rgba(0, 0, 0, 0.2);
     z-index: 10000;
+    padding: 5px;
     span:first-child {
       display: none;
     }
