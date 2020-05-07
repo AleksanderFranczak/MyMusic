@@ -14,16 +14,18 @@ const StyledLabel = styled.label`
   color: rgba(0, 0, 0, 0.8);
   font-size: 2rem;
   line-height: 100%;
+  display: inline-block;
 `;
 const FormWrapper = styled.div`
   position: relative;
   padding-top: 30px;
+  width: 100%;
 `;
 
 const StyledForm = styled.input`
   padding: 10px 20px;
   font-size: 2rem;
-  width: 500px;
+  max-width: 500px;
   border: none;
   letter-spacing: 3px;
 

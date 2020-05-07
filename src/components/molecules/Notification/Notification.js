@@ -27,7 +27,7 @@ const Title = styled.p`
   font-size: 2rem;
 
   @media (max-width: 500px) {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
   }
 `;
 
