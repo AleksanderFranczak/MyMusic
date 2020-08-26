@@ -90,16 +90,18 @@ const StyledButton = styled.button`
   margin: 40px 0 0 0;
   padding: 10px 25px;
   font-size: 20px;
-  box-shadow: 5px 5px 0 ${({ theme }) => theme.primary};
+  /* box-shadow: 5px 5px 0 ${({ theme }) => theme.primary}; */
   font-weight: 600;
   letter-spacing: 2px;
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.white};
+  background-color: ${({ theme }) => theme.primary};
+  transition: all 0.2s;
+  border: 4px solid transparent;
   cursor: pointer;
   &:hover {
-    color: ${({ theme }) => theme.white};
-    transition: all 0.5s;
-    box-shadow: 5px 5px 0 ${({ theme }) => theme.white};
-    background-color: ${({ theme }) => theme.primary};
+    border: 4px solid ${({ theme }) => theme.primary};
+    background-color: transparent;
+    color: ${({ theme }) => theme.primary};
   }
 `;
 
